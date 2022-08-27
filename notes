@@ -1,0 +1,64 @@
+
+
+ships
+
+3 hits destroyer
+3 hits submarine 
+3 hits cruiser 
+4 hits battleship 
+5 hits carrier battleship cruiser submarine destroyer
+
+
+random 
+    only
+vertically
+horizontally
+
+grid
+    coordinates 
+        letters A-J
+        numbers 1-10
+
+If letter + number = coordinates(ship)
+
+ship can't be part way off the grid
+ship can't overlap another ship
+
+
+
+
+players
+or computer
+2 of each 2 people
+red vs blue
+if empty respond miss
+
+pegs for hits to show where they happened
+
+missed
+     if empty respond miss at
+    white pegs for misses
+    red pegs for hits
+    display to know where you have hit
+
+hit 
+ states what ship was hit submarine
+ subtract from hitsLeft
+    current number -= 1
+
+if hit or miss, list actions
+    go to the next persons turn
+
+if ship is sunken
+    console.log(ship)
+
+if ship is sunken
+    remove from the list
+
+if red ship is 0 and blue ship is < 0 >
+red wins
+if blues ship is 0 and red ship is <
+0 >
+
+
+
