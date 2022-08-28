@@ -1,39 +1,40 @@
+const { forEach } = require('lodash');
 const ask = require('readline-sync')
 
 'use strict';
 
-
-// 3 hits destroyer
-// 3 hits submarine 
-// 3 hits cruiser 
-// 4 hits battleship 
-// 5 hits carrier
-
-
 //variables
 
 //players
-const players = [];
+let players = [];
+let player = []
+const challengers = new Set(players)
 
-
+// string and array/object sets
 //colors
 let colors =['red' , 'blue'];
 let color = '';
-let colorChoice = []
+
 const hit = false;
 
+
+//empty arrays
 //grid
+let grid = []
 let shipGrid = [];
-
-    
-
+let colorChoice = []
 
 
+//coordinates
 
-
-
-
-
+const coordinates = {
+    columns: {
+        a: 'a', b: 'b', c: 'c', d: 'd', e: 'e', f: 'f', g: 'g', h: 'h', i: 'i', j: 'j'
+    },
+    rows: {
+        a: '0', b: '1', c: '2', d: '3', e: '4', f: '5', g: '6', h: '7', i: '8', j: '9'
+    }
+}
 
 //ships
 const ships = {
@@ -59,10 +60,9 @@ const ships = {
     }
 }
 
-
-
 //FUNCTION
 function createPlayers(player) {
+
     while (players.length < 2) {
         if (players.length < 2) {
           
@@ -74,44 +74,74 @@ function createPlayers(player) {
 
             player = {
                 color,
-                ships
+                ships,
+                grid
             }
+            console.log(`adding grid to player ${players.length}`)
+            grid.push(shipGrid);
+
+            if (player.grid == 1) {
+                return
+            }
+            shipGrid.length += 1;
             players.push(player)
             console.log(`creating player ${players.length}`)
-            console.log(player)
+            console.log(player);
         }
     }
-    if (players.length === 2) {
+    if (players.length >= 2) {
         console.log('go to create grid')
         createGrid()
     }
 }
 
 
-function createGrid(columns, rows) {
-    console.log('creating grid')
-    while (createGrid) {
-        
-    ///rows and columns
-    for (const col in columns) {
-        console.log('running loop')
-        shipGrid[col] = [];
-        for (const row in rows) {
-            addCoordinates(shipGrid, col, row); 
+const {columns, rows} = coordinates
+function createGrid() {
+    
+    grid += 1
+    creating = true
+    if (creating) {
+        let created = false
+        if (created == true) {
+            // playerAttack()
         }
+        ///rows and columns
+        for (const col in columns) {
+            console.log('adding columns')
+            shipGrid[col] = [];
+            for (const row in rows) {
+                console.log('adding rows')
+                created = true
+                console.log(`Grid:  ${shipGrid.length}`)
+                addCoordinates(shipGrid, col, row);
+            }
+        }
+        return shipGrid;
     }
-    return shipGrid;
-    }
-    addCoordinates()
 }
 
 const addCoordinates = (shipGrid, x, y) => {
-    console.log('adding coordinates')
-    shipGrid[x][y] = cell(x, y); //creates a new object
-    console.log('shipGrid:',shipGrid);
-};
- 
 
+    let coordinate = {x, y}
+    
+    console.log('adding coordinates \n')
+    shipGrid[x][y] = coordinate; //creates a new object
+    console.log(`shipGrid:${shipGrid.length}`,shipGrid);
+};
+
+
+const distributeGrid = (shipGrid, player) => {
+
+    for (player in players) {
+        if (grid = []) {
+            grid.push(shipGrid)
+        } else {
+            'already has a grid'
+        }
+    }
+}
+ 
 // const setShips = ship => {
 //     console.log('setting ships \n')
 //     ships.forEach(grid.push(ship))
@@ -143,6 +173,5 @@ if (ask.keyIn('Press any button to start\n \n ')){
     console.log('Maybe another time');
     ask()
 }
+createGrid()
 
-
-console.log('GRID',createGrid(10,10).add()(coordinates))
