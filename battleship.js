@@ -7,7 +7,7 @@ const ask = require('readline-sync')
 
 //players
 let players = [];
-let player = []
+let player = [];
 const challengers = new Set(players)
 
 // string and array/object sets
@@ -37,29 +37,26 @@ const coordinates = {
 }
 
 //ships
-const ships = {
-    destroyer: {
-        shipName: 'destroyer',
+const ships = [
+   {shipName: 'destroyer',
         hitsRemaining: 3
     },
-    submarine: {
-        shipName: 'submarine',
+    {shipName: 'submarine',
         hitsRemaining: 3 
     },
-    cruiser: {
-        shipName: 'cruiser',
+    {shipName: 'cruiser',
         hitsRemaining: 3 
     },
-    battleship: {
-        shipName: 'battleship',
+    {shipName: 'battleship',
         hitsRemaining: 4 
     },
-    carrier: {
-        shipName: 'carrier',
+    {shipName: 'carrier',
         hitsRemaining: 5 
-    }
-}
+    },
+]
 
+// const {ship1, ship2, ...restOfShips} = ships
+// console.log(ship1, ship2,...restOfShips)
 //FUNCTION
 function createPlayers(player, playerCount) {
     player = {
@@ -84,10 +81,7 @@ function createPlayers(player, playerCount) {
         
             console.log('player:', color);
         }
-
     }
-
-
 
 
 const {columns, rows} = coordinates
@@ -97,7 +91,7 @@ function createGrid() {
    
     for (player in players) {
   
-            creating = true
+        creating = true
         if (creating) {
                 let created = false
                 if (created == true) {
@@ -122,40 +116,80 @@ function createGrid() {
                     }
                 }
         }
-        console.log('creating ship grid ', shipGridCount);
-        console.log(shipGrid)
-            checkAllGridsMade()
+        checkAllGridsMade()
 
         return shipGrid;
     }
 }
 
 
-const addCoordinates = (gridCoordinate, x, y) => {
-
+const addCoordinates = ((gridCoordinate, x, y) => {
     let coordinate = {x, y}
     // console.log('adding coordinates \n')
     gridCoordinate[x][y] = coordinate; //creates a new object
     grid.push(gridCoordinate[x][y]);
  
-};
+});
 
 
 let checkAllGridsMade = () => {
     if (players.every(player => player) == true) {
-        console.log('everyone has a grid');
-        console.log(players.length)
-
-        // return setShips()
-   };
+        if (players.length === 2) {
+            console.log(`Both players have a grid`);
+            setShips()
+        } else {
+            console.log(`All ${players.length} players have a grid`);
+            setShips()
+        }
+   }
 }
 
+function setShips(size, direction) {
+    console.log('Getting ships \n\n')
+
+   
+    // getAllShips
+    // set size to ship hitsRemaining(default)
+    // randomly place ships on board
+    // make sure they are only vertical or horizontal- direction
+    // make sure ships are set in grid
+
+    // horizontal = 
+    // vertical = 
+
+    // size = shipName && currentHitsRemaining;
+    // direction = horizontal || vertical;
+    
+
+    let getShips = players
+        .map(player => {
+            return ships
+        })
+
+    console.log('players ships', getShips)
+    console.log('\n\nSetting playerships')
+    
  
-const setShips = ship => {
-    console.log('setting ships \n')
-    // ships.forEach(grid.push(ship))
-
+    // console.log('size',size)
+    // console.log('ships on grid: ', player[ships])
 }
+
+let getAllShipsInfo=(property, comparable)=> {
+    console.log('getting info')
+    var arraySize = ships.length;
+    
+    for(var i = 0; i < arraySize; i++) {
+        if (ships[i][property] == comparable) {
+            console.log({
+                "ship name": ships[i].shipName,
+                "hits remaining": ships[i].hitsRemaining
+            })
+            ships[i].hitsRemaining
+       }
+    }
+}
+
+getAllShipsInfo()
 
 // for (const [key, value] of ships) {
 //     console.log('ship:', key, 'hits remaining:', value)
@@ -166,11 +200,6 @@ const setShips = ship => {
 //     }
 // }
 
-
-// setShips(ship => {
-//     console.log('setting ships \n')
-//     ships.forEach(grid.push(ship))
-// })
 
 
 //QUESTIONS
@@ -184,5 +213,7 @@ if (ask.keyIn('Press any button to start\n \n ')){
 }
 createGrid()
 
-console.log('players:', players[player])
-// console.log('last player',players)
+console.log(players[player].ships)
+console.log('ships',ships)
+
+
